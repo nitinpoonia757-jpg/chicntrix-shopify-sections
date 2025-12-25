@@ -1,0 +1,66 @@
+{%- style -%}
+.header {
+  background-color: #f5f1e6;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.logo {
+  font-size: 26px;
+  font-weight: 700;
+  color: #111111;
+  text-decoration: none;
+}
+.menu {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.menu li {
+  margin-left: 25px;
+}
+.menu a {
+  color: #111111;
+  text-decoration: none;
+  font-size: 14px;
+  transition: opacity 0.3s;
+}
+.menu a:hover {
+  opacity: 0.6;
+}
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+  }
+  .menu {
+    margin-top: 15px;
+  }
+}
+{%- endstyle -%}
+
+<header class="header">
+  <a href="{{ routes.root_url }}" class="logo">{{ shop.name }}</a>
+  <nav>
+    <ul class="menu">
+      {% for link in section.settings.menu.links %}
+        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </nav>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Main menu"
+    }
+  ]
+}
+{% endschema %}
