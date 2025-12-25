@@ -1,0 +1,65 @@
+{%- style -%}
+.hero-banner {
+  background-color: #f5f1e6;
+  padding: 80px 20px;
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+}
+.hero-image {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 30px;
+}
+.hero-cta {
+  display: inline-block;
+  background-color: #111111;
+  color: #f5f1e6;
+  padding: 14px 36px;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
+.hero-cta:hover {
+  background-color: #333333;
+}
+{%- endstyle -%}
+
+<section class="hero-banner">
+  {% if section.settings.hero_image != blank %}
+    <img
+      src="{{ section.settings.hero_image | image_url }}"
+      alt="Hero image"
+      class="hero-image">
+  {% endif %}
+
+  <a href="{{ section.settings.button_link }}" class="hero-cta">
+    {{ section.settings.button_text }}
+  </a>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Banner",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "hero_image",
+      "label": "Hero image"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button text",
+      "default": "SHOP NOW"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link",
+      "default": "/collections/all"
+    }
+  ]
+}
+{% endschema %}
